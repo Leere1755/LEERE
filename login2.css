@@ -1,0 +1,150 @@
+@charset "UTF-8";
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+	font-family: 'PRETENDARDJP-BLACK';
+	src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype');
+}
+
+@font-face {
+	font-family: 'PRETENDARDJP-BOLD'; /* 'BLOD'는 'BOLD'로 수정해야 합니다. */
+	src: url('../fonts/PRETENDARDJP-BOLD.OTF') format('opentype');
+}
+
+/* 기본적인 body 스타일 */
+body {
+	font-family: 'PRETENDARDJP-BLACK';
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	flex-direction: column; /* 세로 방향으로 정렬 */
+	justify-content: center; /* 중앙 정렬 */
+	align-items: center; /* 중앙 정렬 */
+	position: relative;
+	background-image: url('../images/40.jpg'); /* 배경 이미지 설정 */
+	background-size: cover; /* 배경 이미지 크기 조정 */
+	background-position: center; /* 배경 이미지 중앙 정렬 */
+}
+
+/* 컨테이너 스타일 */
+.container {
+	background-color: white; /* 흰색 배경 */
+	padding: 50px; /* 안쪽 여백 */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	position: relative; /* 자식 요소에 대한 절대 위치 조정 가능 */
+	max-width: 400px; /* 최대 너비 설정 */
+	margin-top: 40px;
+	margin-bottom: 10px;
+	z-index: 1; /* 배경 이미지 위에 위치하도록 설정 */
+}
+
+.title {
+	margin-bottom: 20px;
+	padding-top: -10px; /* 텍스트 위 여백을 10px 줄임 */
+	font-family: 'PRETENDARDJP-BOLD'; /* 'BLOD'는 'BOLD'로 수정해야 합니다. */
+	font-style: italic; /* 기울임 효과 */
+	font-size: 1.5em; /* 수직 중앙 정렬 */
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+	font-style: italic; /* 기울임 효과 */
+	font-family : 'PRETENDARDJP-BOLD'; /* 사용자 정의 글씨체 */
+	padding-top: 70px;
+	font-size: 1em;
+	margin-bottom: 30px; /* 입력 그룹 간의 여백 */
+	display: flex; /* 플렉스 박스 사용 */
+	align-items: center;
+	font-size: 1em; /* 수직 중앙 정렬 */
+}
+
+/* 레이블 스타일 */
+.input-group label {
+	color: red; 
+	font-family : 'PRETENDARDJP-BOLD'; /* 사용자 정의 글씨체 */
+	font-style: italic; /* 기울임 효과 */
+	margin-right: 10px; /* 레이블과 입력 필드 간의 간격 */
+	font-weight: bold;
+	font-family: 'PRETENDARDJP-BOLD'; /* 레이블 글자 두껍게 */
+}
+
+/* 입력 필드 스타일 */
+.input-group input {
+	font-style: italic; /* 기울임 효과 */
+	font-family: 'PRETENDARDJP-BOLD'; /* 'BLOD'는 'BOLD'로 수정해야 합니다. */
+	padding: 10px; /* 입력 필드 안쪽 여백 */
+	border: none; /* 테두리 제거 */
+	border-bottom: 1px solid #ccc; /* 밑줄 추가 */
+	font-size: 1em; /* 글자 크기 */
+	background-color: transparent; /* 배경을 투명으로 설정 */
+	flex: 1; /* 입력 필드가 남은 공간을 채우도록 설정 */
+	outline: none; /* 포커스 시 아웃라인 제거 */
+}
+
+/* 포커스 시 효과 추가 */
+.input-group input:focus {
+	border-bottom: 1px solid red; /* 포커스 시 밑줄 색상 변경 */
+}
+
+/* Draw My Life 섹션 스타일 */
+.my-app-button-container {
+	margin-top: 30px; /* 위쪽 여백 추가 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 텍스트 스타일 */
+.my-app-text {
+	font-family: 'PRETENDARDJP-BLACK'; /* 사용자 정의 글씨체 이름 */
+	font-size: 2.5em; /* 글자 크기 */
+	color: red; /* 글자 색상 */
+	text-align: left; /* 텍스트 왼쪽 정렬 */
+	margin-bottom: 4px; /* 텍스트 하단 여백 */
+	text-decoration: underline; /* 밑줄 추가 */
+	position: absolute; /* 절대 위치 설정 */
+	left: 30px; /* 왼쪽 여백 조정 */
+	bottom: 30px; /* 하단 여백 조정 */
+	font-style: italic; /* 텍스트 기울이기 추가 */
+}
+
+/* 버튼 스타일 */
+.arrow-button {
+    background-color: red; /* 버튼 배경색 */
+    color: white; /* 글자 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 50%; /* 동그란 모양 */
+    width: 45px; /* 버튼 너비를 늘림 */
+    height: 45px; /* 버튼 높이를 늘림 */
+    cursor: pointer; /* 포인터 커서 */
+    display: flex; /* 플렉스박스 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+    font-size: 2em; /* 버튼 글자 크기를 키움 */
+    padding: 5px;
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+    margin-top: 105px; /* 위쪽 여백 */
+    margin-left: 350px; /* 오른쪽으로 이동 */
+}
+
+.arrow-button:hover {
+    background-color: white; /* 호버 시 색상 변경 */
+    color: red; /* 호버 시 글자색 변경 */
+}
+
+/* 반응형 디자인 */
+@media ( max-width : 768px) {
+	.progress-text {
+		font-size: 1.8em; /* 모바일에서 텍스트 크기 조정 */
+		top: 200px; /* 위치 조정 */
+	}
+	.my-app-text {
+		font-size: 1.5em; /* 글자 크기 */
+		left: 20px; /* 왼쪽 여백 조정 */
+		bottom: 20px; /* 하단 여백 조정 */
+	}
+	.container {
+		width: 45%; /* 최대 너비 설정 */
+		height: 350px; /* 자동 높이 설정 */
+		overflow-y: auto; /* 세로 방향 스크롤 활성화 */
+	}
+}

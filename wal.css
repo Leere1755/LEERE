@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+	font-family: 'PRETENDARDJP-BLACK';
+	src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype');
+}
+
+@font-face {
+	font-family: 'PRETENDARDJP-BOLD';
+	src: url('../fonts/PRETENDARDJP-BOLD.OTF') format('opentype');
+}
+
+/* 전체 스타일 설정 */
+body {
+	font-family: 'PRETENDARDJP-BLACK';
+	margin: 0;
+	padding: 0;
+	background-color: #f9f9f9; /* 배경 색상 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background-image: url('../images/40.jpg'); /* 배경 이미지 설정 */
+	background-size: cover; /* 배경 이미지 크기 조정 */
+	background-position: center; /* 배경 이미지 중앙 정렬 */
+}
+
+.container {
+	margin-left: 20px;
+	padding-bottom: 60px; /* 버튼 높이만큼 여백 추가 */
+	justify-content: center;
+	color: black;
+	background: white;
+	padding: 40px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+	max-width: 600px; /* 최대 너비 설정 */
+	width: 100%; /* 전체 너비 */
+}
+
+.red-italic {
+	font-family: 'PRETENDARDJP-BOLD'; /* BOLD 글꼴 적용 */
+}
+
+textarea {
+	width: 100%; /* 전체 너비 */
+	height: 143px; /* 높이 설정 */
+	padding: 20px; /* 내부 여백을 줄여서 텍스트 위치 조정 */
+	border: 1px solid #ff0000; /* 테두리 색상 */
+	box-sizing: border-box; /* 패딩과 테두리를 포함한 크기 계산 */
+	resize: none; /* 사이즈 조정 비활성화 */
+	font-size: 16px; /* 폰트 크기 */
+	outline: none; /* 포커스 시 테두리 제거 */
+	font-family: 'PRETENDARDJP-BOLD'; /* BOLD 글꼴 적용 */
+	margin-top: 5px; /* 위쪽 여백 추가 */
+	margin-bottom: 20px; /* 아래쪽 여백 추가하여 버튼과 간격 조정 */
+	overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+}
+
+.file-name {
+	margin-top: 5px; /* 위쪽 여백 추가 */
+	color: #666; /* 텍스트 색상 */
+	font-size: 14px; /* 텍스트 크기 */
+	margin-right: 10px; /* 오른쪽 여백 추가 */
+	font-family: 'PRETENDARDJP-BOLD'; /* 글씨체 변경 */
+}
+
+.file-upload {
+	display: flex;
+	margin-top: -5px; /* 위쪽 여백 추가 */
+	justify-content: flex-end; /* 오른쪽 정렬 */
+	width: 100%; /* 전체 너비 */
+	position: relative; /* 상대 위치 지정 */
+	right: -10px; /* 오른쪽으로 더 이동 (값 조정 가능) */
+}
+
+.file-label {
+	font-family: 'PRETENDARDJP-BOLD'; /* 글씨체 변경 */
+	color: #666; /* 텍스트 색상 */
+	font-size: 14px; /* 텍스트 크기 */
+	margin-right: 10px; /* 오른쪽 여백 추가 */
+	cursor: pointer; /* 포인터 커서 추가 */
+	padding: 5px 10px; /* 여백 추가 */
+	border: 1px solid #ccc; /* 테두리 추가 */
+	background-color: #f0f0f0; /* 배경색 추가 */
+}
+
+.thick-line {
+	border: none; /* 기본 테두리 제거 */
+	height: 3.5px; /* 두께 설정 */
+	background-color: #ff5733; /* 원하는 색상으로 변경 */
+	margin: 20px 0; /* 위아래 여백 설정 */
+}
+
+.right-align {
+	text-align: right; /* 텍스트 오른쪽 정렬 */
+	margin: 0; /* 기본 여백 제거 */
+}
+
+.red-italic {
+	color: red; /* 글씨 색상 빨간색 */
+	font-style: italic; /* 글씨 기울임 */
+}
+
+.underline {
+	font-family: 'PRETENDARDJP-BOLD'; /* 사용자 정의 글씨체 */
+	font-size: 20px;
+	font-style: italic; /* 글씨 기울임 */
+	text-decoration-color: red;
+	font-style: italic; /* 밑줄 색상 빨간색 */
+}
+
+.name-input {
+	border: none; /* 기본 테두리 제거 */
+	outline: none; /* 포커스 시 테두리 제거 */
+	padding: 5px; /* 내부 여백 */
+	width: 60px; /* 최소 너비 설정 */
+}
+
+.custom-font {
+	font-style: italic; /* 밑줄 색상 빨간색 */
+	font-size: 20px; /* 폰트 크기 */
+	font-family: 'PRETENDARDJP-BOLD'; /* 사용자 정의 글씨체 */
+	color: black; /* 기본 텍스트 색상 */
+}
+
+footer {
+	text-align: right; /* 버튼을 오른쪽으로 정렬 */
+	padding: 10px 0; /* 여백 추가 */
+	display: flex;
+	justify-content: flex-end; /* 오른쪽 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+}
+
+/* 버튼 스타일 */
+.arrow-button {
+	margin-bottom: -500px;
+	background-color: red; /* 버튼 배경색 */
+	color: white; /* 글자 색상 */
+	border: none; /* 테두리 제거 */
+	border-radius: 50%; /* 동그란 모양 */
+	width: 45px; /* 버튼 너비를 늘림 */
+    height: 45px; /* 버튼 높이를 늘림 */
+	cursor: pointer; /* 포인터 커서 */
+	display: flex; /* 플렉스박스 사용 */
+	justify-content: center; /* 중앙 정렬 */
+	align-items: center; /* 중앙 정렬 */
+	font-size: 1.5em; /* 버튼 글자 크기 */
+	padding: 5px;
+	margin-top: 105px;
+	margin-left: -40px; /* 버튼을 오른쪽으로 밀어냄 */
+	margin-right: 20px; /* 오른쪽 여백 추가 */
+}
+
+.arrow-button:hover {
+	background-color: white; /* 호버 시 색상 변경 */
+	color: red;
+}
+
+@media ( max-width : 768px) {
+	.container {
+		padding: 15px; /* 작은 화면에서 패딩 줄이기 */
+	}
+}

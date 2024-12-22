@@ -1,0 +1,268 @@
+@charset "UTF-8";
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+	font-family: 'PRETENDARDJP-BLACK'; /* 사용자 정의 글씨체 이름 */
+	src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype');
+	/* OTF 파일 경로 */
+}
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+	font-family: 'PRETENDARDJP-BOLD'; /* 사용자 정의 글씨체 이름 */
+	src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype');
+	/* OTF 파일 경로 */
+}
+
+/* 기본적인 body 스타일 */
+body {
+	display: flex; /* 플렉스 박스를 사용하여 중앙 정렬 */
+	justify-content: center; /* 가로 방향 중앙 정렬 */
+	height: 100vh; /* 화면 전체 높이 */
+	margin: 0; /* 기본 여백 제거 */
+	overflow: hidden; /* 스크롤 방지 */
+	background-image: url('../images/40.jpg'); /* 배경 이미지 설정 */
+	background-size: cover; /* 배경 이미지 크기 조정 */
+	background-position: center; /* 배경 이미지 중앙 정렬 */
+	font-family: 'PRETENDARDJP-BLACK'; /* 사용자 정의 글씨체 적용 */
+}
+
+/* 헤더 스타일 */
+header {
+	display: flex; /* 플렉스 박스 사용 */
+	justify-content: space-between; /* 아이콘 간 간격 조정 */
+	align-items: center; /* 세로 중앙 정렬 */
+	padding: 10px 50px; /* 여백 설정 */
+	background-color: rgba(255, 255, 255, 0.5); /* 반투명 배경색 */
+	position: fixed; /* 고정 헤더 */
+	top: 0; /* 화면 상단에 위치 */
+	width: 100%; /* 전체 너비 */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 아이콘 스타일 */
+.icon {
+	width: 40px; /* 아이콘 너비 */
+	height: 40px; /* 아이콘 높이 */
+	display: flex; /* 플렉스 박스를 사용하여 중앙 정렬 */
+	justify-content: center; /* 아이콘 중앙 정렬 */
+	align-items: center; /* 아이콘 수직 중앙 정렬 */
+	cursor: pointer; /* 커서 모양 변경 */
+	transition: transform 0.3s; /* 호버 시 부드러운 효과 */
+	color: red; /* 기본 아이콘 색상 */
+	margin-left: 5px; /* 왼쪽 여백 */
+}
+
+.icon:hover {
+	color: #fff; /* 호버 시 색상 변화 */
+	transform: scale(1.1); /* 호버 시 아이콘 크기 확대 */
+}
+
+.menu-icon {
+	position: fixed; /* 기본 위치 설정 */
+	left: calc(50% - 22px); /* 중앙 정렬 */
+	top: auto;
+}
+
+/* 고정 클래스 */
+.fixed {
+	position: fixed; /* 고정 위치로 변경 */
+	left: 50%; /* 중앙 정렬 유지 */
+}
+
+/* 제목 스타일 */
+.title {
+	font-size: 4em; /* 제목 크기 */
+	color: #ff0000; /* 제목 색상 */
+	position: absolute; /* 절대 위치 설정 */
+	top: 50%; /* 화면 중앙에 위치 */
+	left: 50%;
+	transform: translate(-50%, -50%); /* 중앙 정렬 */
+	font-style: italic; /* 텍스트 기울이기 추가 */
+	text-decoration: underline; /* 밑줄 추가 */
+}
+
+footer {
+	position: fixed; /* 고정 위치 */
+	bottom: 0; /* 화면 아래에 위치 */
+	left: 0; /* 왼쪽 끝에 위치 */
+	right: 0; /* 오른쪽 끝에 위치 */
+	color: red; /* 텍스트 색상 */
+	padding: 10px 20px; /* 상하 여백 및 좌우 여백 추가 */
+	font-size: 14px; /* 글씨 크기 */
+	display: flex; /* 플렉스 박스 사용 */
+	justify-content: space-between; /* 좌우 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
+}
+
+footer p {
+	margin: 0; /* 기본 마진 제거 */
+	flex-grow: 1; /* 텍스트가 가능한 공간을 차지하게 설정 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+	padding: 10px;
+}
+
+.icon.right {
+	margin-left: auto; /* 푸터의 오른쪽 끝으로 이동 */
+}
+
+/* 긴 원형 스타일 (네모에 가깝게) */
+.oval {
+	width: 250px; /* 긴 원형의 너비 */
+	height: 90px; /* 긴 원형의 높이 */
+	background-color: white; /* 배경색 흰색 */
+	border-radius: 30px; /* 모서리를 약간 둥글게 */
+	position: absolute; /* 절대 위치 */
+	bottom: 20px; /* 푸터에서의 거리 조정 */
+	right: 20px; /* 오른쪽에서의 거리 조정 */
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+	display: flex; /* 내부 요소 정렬을 위해 flex 사용 */
+	align-items: center; /* 세로 중앙 정렬 */
+	padding-left: 10px; /* 왼쪽 여백 */
+}
+
+/* 프로필 이미지 스타일 */
+.oval img {
+	width: 70px; /* 이미지의 폭 조정 */
+	height: 70px; /* 이미지의 높이 조정 */
+	object-fit: cover; /* 이미지를 긴 원형에 맞게 잘라냄 */
+	border-radius: 50%; /* 이미지도 동그라미 형태로 */
+	margin-right: 10px; /* 이미지와 텍스트 간의 간격 */
+}
+
+/* 모달 스타일 */
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed; /* 고정 위치 */
+	left: 0;
+	top: 0;
+	width: 100%; /* 전체 너비 */
+	height: 100%; /* 전체 높이 */
+	background-color: rgba(255, 255, 255, 0.5); /* 흰색 반투명 배경 */
+	overflow: hidden; /* 스크롤 방지 */
+	justify-content: center; /* 중앙 정렬 */
+	align-items: center; /* 중앙 정렬 */
+	z-index: 1001; /* 헤더 위에 표시 */
+}
+
+/* 모달 내용 스타일 */
+.modal-content {
+	background-color: white; /* 흰색 배경 */
+	padding: 20px; /* 여백 */
+	overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+	width: 250px; /* 너비 설정 */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+	position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 상대 위치로 설정 */
+}
+
+/* 메뉴 항목 스타일 */
+.menu-items {
+	display: flex; /* 플렉스 박스를 사용하여 수평 정렬 */
+	flex-direction: column; /* 세로 방향으로 정렬 */
+	align-items: center; /* 중앙 정렬 */
+	font-style: italic; /* 텍스트 기울이기 추가 */
+	color: red; /* 텍스트 색상 */
+}
+
+/* 메뉴 항목 텍스트 스타일 */
+.menu-items p {
+	margin: 10px 0; /* 항목 간의 간격 조정 */
+	color: red; /* 텍스트 색상 */
+	cursor: pointer; /* 커서 모양 변경 */
+	transition: color 0.3s, background-color 0.3s; /* 부드러운 전환 효과 */
+	padding: 5px; /* 여백 추가 */
+}
+
+.menu-items p:hover {
+	color: white; /* 호버 시 텍스트 색상 변화 */
+	background-color: red; /* 호버 시 배경색 변화 */
+	font-style: italic; /* 텍스트 기울이기 추가 */
+}
+
+/* 모달 닫기 버튼 스타일 */
+.close {
+	position: absolute; /* 절대 위치로 설정 */
+	top: 5px; /* 상단에서 떨어진 위치 설정 */
+	right: 10px; /* 오른쪽에서 떨어진 위치 설정 */
+	color: red; /* 닫기 버튼 색상 */
+	font-size: 24px; /* 크기 */
+	cursor: pointer; /* 커서 모양 변경 */
+}
+
+.close:hover {
+	color: white; /* 호버 시 색상 변화 */
+}
+
+/* 검색 컨테이너 스타일 */
+.search-active .menu-icon {
+	left: calc(50% + 15px); /* 검색 필드가 열릴 때 메뉴 아이콘을 왼쪽으로 이동 (원하는 값으로 조정) */
+}
+
+.search-container {
+	display: flex; /* 플렉스 박스를 사용하여 정렬 */
+	align-items: center; /* 세로 정렬 */
+}
+
+/* 검색 아이콘 스타일 */
+.icon .left {
+	margin-right: 5px; /* 오른쪽 여백 */
+	cursor: pointer; /* 커서 모양 변경 */
+}
+
+/* 검색 입력 필드 스타일 */
+#search-input {
+	display: none; /* 기본적으로 숨김 */
+	padding: 5px; /* 여백 */
+	border: none; /* 테두리 제거 */
+	outline: none; /* 포커스 시 아웃라인 제거 */
+	border-bottom: 2px solid red; /* 밑줄 추가 */
+	background-color: transparent; /* 배경색 투명하게 설정 */
+	color: red; /* 텍스트 색상 설정 */
+	transition: border-color 0.3s; /* 색상 변경 시 부드러운 전환 효과 */
+}
+
+#search-input:focus {
+	border-bottom: 2px solid red; /* 포커스 시 밑줄 색상 변경 */
+}
+
+/* 검색 버튼 스타일 */
+#search-button {
+	padding: 5px 10px; /* 여백 */
+	border: none; /* 테두리 없음 */
+	background-color: red; /* 배경색 */
+	color: white; /* 글자색 */
+	cursor: pointer; /* 커서 모양 변경 */
+	border-radius: 4px; /* 모서리 둥글게 */
+}
+
+#search-button:hover {
+	background-color: darkred; /* 호버 시 배경색 변경 */
+}
+
+/* 반응형 디자인 */
+@media ( max-width : 768px) {
+	header {
+		padding: 10px 20px; /* 좁은 화면에서 패딩 줄이기 */
+	}
+	.title {
+		font-size: 2.3em; /* 제목 크기 줄이기 */
+	}
+	footer {
+		font-size: 10px; /* 바닥글 크기 줄이기 */
+	}
+	.modal-content {
+		width: 30%; /* 모바일에서 모달 너비 조정 */
+		padding: 15px; /* 모바일에서 여백 조정 */
+	}
+	.icon {
+		width: 30px; /* 아이콘 크기 줄이기 */
+		height: 30px; /* 아이콘 높이 줄이기 */
+	}
+	#search-input {
+		width: 100%; /* 검색 입력 필드 너비 조정 */
+	}
+	#search-button {
+		width: 25%; /* 버튼 너비 자동 조정 */
+	}
+}
+}

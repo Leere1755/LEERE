@@ -1,0 +1,237 @@
+@charset "UTF-8";
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+    font-family: 'PRETENDARDJP-BLACK';
+    src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype');
+}
+
+/* 기본 설정 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'PRETENDARDJP-BLACK', sans-serif;
+    background-image: url('../images/40.jpg'); /* 배경 이미지 */
+    background-size: cover; /* 전체 화면 채움 */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* 스크롤 시 배경 고정 */
+    color: #333; /* 기본 텍스트 색상 */
+    box-sizing: border-box; /* 박스 모델 설정 */
+}
+
+/* 폼 내부 글씨체 설정 */
+input, textarea, button, h1, h2, .comment-author, .comment-date,
+.comment-content {
+    font-family: 'PRETENDARDJP-BLACK', sans-serif !important;
+}
+
+/* 전체 컨테이너 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 제목 스타일 */
+.title {
+    text-align: center;
+    color: #FF4500; /* 타이틀 색상 */
+    font-size: 2.5em;
+    margin: 20px 0;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* 갤러리 섹션 */
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 40px;
+    height: 70vh; /* 섹션 높이 */
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 80vw; /* 너비 80% */
+    height: 100%; /* 부모 높이에 맞춤 */
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    transition: opacity 0.5s ease, transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.comment-section {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* 반투명 배경 */
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px; /* 하단 여백 추가 */
+}
+
+/* 댓글 섹션 제목 */
+.comment-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 10px;
+    color: #444;
+    text-align: center;
+}
+
+/* 댓글 입력 폼 */
+.comment-form {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 요소 간 간격 */
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 */
+    margin-bottom: 20px;
+}
+
+.guest {
+    display: flex;
+    gap: 10px;
+}
+
+.guest input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    width: 150px; /* 고정 너비 */
+    height: 40px; /* 높이를 댓글 필드와 동일하게 */
+    box-sizing: border-box; /* 패딩 포함하여 크기 계산 */
+}
+
+textarea[name="comment"] {
+
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    resize: none;
+    min-height: 40px; /* 댓글 입력 필드 최소 높이 */
+    box-sizing: border-box; /* 패딩 포함하여 크기 계산 */
+}
+
+textarea[name="comment"]::placeholder {
+	font-family: 'PRETENDARDJP-BLACK';
+    position: relative;
+    top: 5px; /* placeholder 위치를 살짝 아래로 */
+    color: gray; /* 원하는 색상으로 조정 */
+    font-size: 0.9rem; /* 글자 크기 조정 */
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    gap: 5px;
+}
+
+button#button-comment-send {
+    background-color: red;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#button-comment-send:hover {
+    background-color: #0056b3;
+}
+
+/* 댓글 리스트 */
+.comment-list {
+    margin-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.comment-author {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.comment-date {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.comment-content {
+    margin-top: 5px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* 반응형 디자인 */
+@media ( max-width : 768px) {
+    .comment-section {
+        max-width: 90%;
+        padding: 15px;
+    }
+    .comment-title {
+        font-size: 1.5rem;
+    }
+    textarea[name="comment"] {
+        font-size: 0.9rem;
+    }
+    button#button-comment-send {
+        padding: 8px 10px;
+    }
+}
+
+@media ( max-width : 480px) {
+    .comment-section {
+        max-width: 95%;
+    }
+    .comment-title {
+        font-size: 1.3rem;
+    }
+    textarea[name="comment"] {
+        padding: 8px;
+    }
+    button#button-comment-send {
+        padding: 6px 8px;
+    }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="로그인 페이지">
+    <title>login2</title>
+    <link rel="stylesheet" href="../login/login2.css"> <!-- CSS 파일 링크 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery 포함 -->
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="title">
+            こんにちは！<br>Draw My Lifeです
+        </h2>
+
+        <form id="loginForm" method="post" action="/login/login.do"> <!-- 로그인 폼에 ID 추가 -->
+            <div class="input-group">
+                <label for="userId">ID</label>
+                <input type="text" id="userId" name="userId" placeholder="IDを入力してください" required>
+            </div>
+
+            <div class="input-group">
+                <label for="userPw">PW</label>
+                <input type="password" id="userPw" name="userPw" placeholder="PWを入力してください" required>
+            </div>
+            <button class="arrow-button" type="button" id="submitButton"> <!-- 로그인 버튼 -->
+                &#8594; <!-- 화살표 아이콘 -->
+            </button>
+        </form>
+
+        <div id="errorMessage" style="color: red; margin-top: -30px; font-weight: bold;"></div> <!-- 오류 메시지를 표시할 DIV 추가 -->
+    </div>
+
+    <div class="my-app-button-container">
+        <span class="my-app-text">Draw My Life</span>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        // 로그인 버튼 클릭 이벤트 처리
+        $('#submitButton').on('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+
+            // 입력 값 확인
+            const userId = $('#userId').val();
+            const userPassword = $('#userPw').val();
+
+            // 콘솔 로그 추가
+            console.log("User ID:", userId);
+            console.log("User Password:", userPassword);
+
+            // 입력 필드가 비어 있는지 확인
+            if (userId === '' || userPassword === '') {
+                $('#errorMessage').text('IDとPWを入力してください.');
+                return; // AJAX 요청을 보내지 않음
+            }
+
+            // AJAX 요청
+            $.ajax({
+                type: 'POST',
+                url: '/login/login.do', // 로그인 서블릿 URL
+                data: {
+                    userId: userId,
+                    userPassword: userPassword // userPassword로 맞춤
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // 로그인 성공 시 리다이렉션
+                        window.location.href = '/ct/index2.do'; // 로그인 성공 시 이동
+                    } else {
+                        // 로그인 실패 시 오류 메시지 표시
+                        $('#errorMessage').text(response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAXrequest失敗:", status, error);
+                    console.error("Server応答内容:", xhr.responseText); // 서버의 응답 내용 출력
+                    $('#errorMessage').text('Serverとの通信に失敗しました: ' + error);
+                }
+            });
+        });
+    });
+
+    </script>
+</body>
+</html>

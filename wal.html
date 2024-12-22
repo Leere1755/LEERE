@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>편지</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../letter/wal.css"> <!-- CSS 파일 경로 -->
+
+       
+</head>
+<body>
+    <div class="container">
+        <h2>
+            <span class="red-italic">Dear.</span> <span class="underline">이레</span>
+        </h2>
+
+        <hr class="thick-line">
+
+        <main>
+            <form id="letterForm" action="../blog/편지게시글.jsp" method="POST"> <!-- 폼 추가 -->
+                <textarea placeholder="ここに内容を入力してください" rows="5" name="content"></textarea>
+                <div class="file-upload">
+                    <span id="fileName" class="file-name">選択されたファイルがありません</span> <!-- 파일 이름 표시 -->
+                    <label for="fileInput" class="file-label">ファイル選択</label>
+                    <input type="file" id="fileInput" style="display: none;" />
+                </div>
+            </form>
+        </main>
+
+        <hr class="thick-line">
+
+        <h2 class="right-align">
+            <span class="red-italic">from.</span>
+            <span class="underline"><input type="text" id="userName" class="name-input custom-font" name="userName" /></span>
+        </h2>
+    </div>
+
+    <!-- 게시 버튼을 고정 위치에 배치 -->
+    <footer>
+       <button class="arrow-button" type="button" onclick="redirectToPage('../blog/편지게시물.jsp')">
+        &#8594; <!-- 화살표 아이콘 -->
+    </button>
+    </footer>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0]; // 선택된 파일
+            const fileNameDisplay = document.getElementById('fileName');
+
+            if (file) {
+                fileNameDisplay.textContent = file.name; // 파일 이름 표시
+            } else {
+                fileNameDisplay.textContent = '선택된 파일 없음'; // 파일이 없을 경우
+            }
+        });
+        function redirectToPage(page) {
+            window.location.href = page; // 페이지 전환
+        }
+    	function redirectToPage(page) {
+			document.body.classList.add('fade-out'); // fade-out 클래스 추가
+			setTimeout(function() {
+				window.location.href = page; // 페이지 전환
+			}, 500); // 애니메이션 시간과 일치하도록 설정
+		}
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+/* 사용자 정의 글씨체 설정 */
+@font-face {
+    font-family: 'PRETENDARDJP-BLACK'; /* 사용자 정의 글씨체 이름 */
+    src: url('../fonts/PRETENDARDJP-BLACK.OTF') format('opentype'); /* 글씨체 파일 경로 */
+	font-weight: normal;
+    font-style: normal;
+}
+
+/* CSS 변수 설정 */
+:root {
+    --main-color: red; /* 기본 색상 */
+    --text-color: white; /* 텍스트 색상 */
+}
+
+/* 기본적인 body 스타일 */
+.my-app-body {
+    font-family: 'PRETENDARDJP-BLACK'; /* 기본 글씨체 설정 */
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 전체 높이 */
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    background-image: url('../images/40.jpg'); /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기 조정 */
+    background-position: center; /* 배경 이미지 중앙 정렬 */
+    font-style: italic; /* 텍스트 기울이기 추가 */
+}
+
+/* 흰색 박스 컨테이너 스타일 */
+.my-app-container {
+    background-color: rgba(255, 255, 255, 0.8); /* 흰색 배경 (투명도 조절) */
+    padding: 40px; /* 패딩 추가 */
+    border-radius: 0; /* 모서리 둥글게 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+}
+
+/* 페이지 전환 애니메이션 */
+.fade {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out; /* 부드러운 전환 */
+}
+
+.fade-out {
+    opacity: 0; /* 투명하게 */
+}
+
+/* 버튼 컨테이너 스타일 */
+.my-app-button-container {
+    display: flex; /* 플렉스 박스 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 버튼을 중앙 정렬 */
+    margin-top: 20px; /* Draw My Life와 버튼 간격 조정 */
+}
+
+/* 텍스트 스타일 */
+.my-app-text {
+    font-family: 'PRETENDARDJP-BLACK'; /* 사용자 정의 글씨체 이름 */
+    font-size: 5em; /* 글자 크기 */
+    color: var(--main-color); /* 글자 색상 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin-bottom: 40px; /* 텍스트 하단 여백 제거 */
+    position: relative; /* 밑줄 위치 설정을 위한 상대 위치 */
+    margin-top: 40px; /* 텍스트 상단 여백 설정 */
+	text-decoration: underline; /* 밑줄 추가 */
+}
+
+/* 링크 스타일 */
+.my-app-link {
+    position: relative; /* 포지션 설정 */
+    background: none; /* 배경 제거 */
+    color: var(--main-color); /* 글자 색상 */
+    font-size: 1.5em; /* 글자 크기 */
+    font-family: 'PRETENDARDJP-BLACK'; /* 기본 글씨체 설정 */
+    cursor: pointer; /* 커서 포인터 변경 */
+    margin: 40px 0; /* 위아래 여백을 일정하게 설정 */
+    text-decoration: none; /* 기본 텍스트 장식 제거 */
+    margin-bottom: 40px;
+}
+
+/* 공통 밑줄 스타일 */
+.my-app-link::after {
+    content: ''; /* 내용 없음 */
+    display: block; /* 블록 요소로 설정 */
+    width: 100%; /* 너비 100% */
+    height: 4px; /* 밑줄 두께 설정 */
+    background-color: var(--main-color); /* 밑줄 색상 */
+    position: absolute; /* 절대 위치 설정 */
+    left: 0; /* 왼쪽 정렬 */
+    bottom: -5px; /* 아래쪽 위치 */
+}
+
+/* 링크 호버 효과 */
+.my-app-link:hover {
+    color: var(--text-color); /* 호버 시 글자 색상 */
+}
+
+.my-app-link:hover::after {
+    background-color: var(--text-color); /* 호버 시 밑줄 색상 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .my-app-text {
+        font-size: 4em; /* 모바일에서 텍스트 크기 조정 */
+    }
+    .my-app-link {
+        font-size: 1em; /* 모바일에서 링크 크기 조정 */
+    }
+}
+
+@media (max-width: 480px) {
+    .my-app-text {
+        font-size: 3em; /* 모바일에서 텍스트 크기 조정 */
+    }
+    .my-app-link {
+        font-size: 0.9em; /* 모바일에서 링크 크기 조정 */
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写真</title>
+    <link rel="stylesheet" href="../Content/photo.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <main>
+        <!-- 갤러리 섹션 -->
+        <section class="gallery-section">
+            <h1 class="title">写真</h1>
+            <div class="gallery" id="gallery" style="margin-bottom: 30px">
+                <div class="item">
+                    <img id="currentImage" src="../images/01.jpg" alt="" style="margin-bottom: 30px">
+                </div>
+            </div>
+        </section>
+
+        <!-- 댓글 섹션 -->
+        <div class="comment-section">
+            <h2>댓글</h2>
+
+            <form id="commentForm" class="comment-form">
+                <div class="guest">
+                    <input type="text" name="name" placeholder="이름" required style="height: 40px; width: 45%; box-sizing: border-box; padding: 5px;">
+                    <input type="password" name="password" placeholder="비밀번호" required style="height: 40px; width: 45%; box-sizing: border-box; padding: 5px;">
+                </div>
+                <textarea name="comment" placeholder="댓글 쓰기…" required style="height: 40px; width: 100%; box-sizing: border-box; padding: 5px;"></textarea>
+                <div class="actions">
+                    <button type="submit" id="button-comment-send" style="height: 40px; box-sizing: border-box; padding: 5px;">댓글 등록</button>
+                </div>
+            </form>
+
+            <ul class="comment-list" id="commentList">
+                
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        const commentForm = document.getElementById('commentForm');
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(commentForm);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/submitComment.do', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            const params = new URLSearchParams(formData).toString();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        try {
+                            const data = JSON.parse(xhr.responseText);
+                            if (data.success) {
+                                const commentList = document.getElementById('commentList');
+                                const newComment = document.createElement('li');
+                                newComment.classList.add('comment-item');
+                                newComment.innerHTML = `
+                                    <div class="comment-author" style="margin-top: 10px"></div>
+                                    <div class="comment-content"></div>
+                                `;
+                                commentList.appendChild(newComment);
+                                commentForm.reset(); // 입력 필드 초기화
+                            } else {
+                                alert('댓글 등록 실패: ' + data.error);
+                            }
+                        } catch (e) {
+                            console.error('JSON 파싱 오류:', e);
+                            alert('응답 처리 중 오류가 발생했습니다.');
+                        }
+                    } else {
+                        alert('서버 요청 중 오류 발생: ' + xhr.status);
+                    }
+                }
+            };
+            xhr.send(params);
+        });
+    </script>
+</body>
+</html>

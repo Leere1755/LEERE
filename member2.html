@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member2</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../member/member2.css"> <!-- CSS 파일 링크 -->
+</head>
+<body class="my-app-body fade"> <!-- fade 클래스 추가 -->
+    <div class="my-app-container"> <!-- 흰색 박스 컨테이너 추가 -->
+        <div class="my-app-button-container"> <!-- 버튼 컨테이너 -->
+            <span class="my-app-text">Draw My Life</span> <!-- 텍스트 -->
+            <span class="my-app-underline"></span> <!-- 밑줄 추가 -->
+            <a class="my-app-link" onclick="redirectToPage('/mem/member.do')">会員登録</a> <!-- 링크 -->
+            <a class="my-app-link" onclick="redirectToPage('/login/login.do')">ログイン</a> <!-- 링크 -->
+        </div>
+    </div>
+    <script>
+    function redirectToPage(page) {
+        document.body.classList.add('fade-out'); // fade-out 클래스 추가
+        setTimeout(function() {
+            window.location.href = page; // 페이지 전환
+        }, 500); // 애니메이션 시간과 일치하도록 설정
+    }
+    </script>
+</body>
+</html>

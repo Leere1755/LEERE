@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会員登録</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="../member/member7.css">
+<!-- CSS 파일 링크 -->
+</head>
+<body>
+	<div class="container">
+    <h2>
+        初めまして！ <br>あなたの情報を入力してください
+    </h2>
+
+    <div class="input-group">
+        <label for="userId">ID</label>
+        <input type="text" id="userId" name="Id" placeholder="IDを入力してください" required>
+        <span id="userIdError" style="color: red;"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="userPw">PW</label>
+        <input type="password" id="userPw" name="password" placeholder="PWを入力してください" required>
+        <span id="userPwError"></span>
+    </div>
+
+    <div class="input-group">
+        <label for="userName">名前</label>
+        <input type="text" id="userName" name="userName" placeholder="名前を入力してください" required>
+        <span id="userNameError"></span>
+    </div>
+    
+    <div class="input-group">
+        <label for="userEmail">Email</label>
+        <input type="email" id="userEmail" name="userEmail" placeholder="Emailを入力してください" required>
+        <span id="userEmailError"></span>
+    </div>
+    
+    <div class="input-group">
+        <label for="userTel">電話番号</label>
+        <input type="tel" id="userTel" name="userTel" placeholder="電話番号を入力してください" required pattern="\d{3}-\d{3,4}-\d{4}">
+        <span id="userTelError"></span>
+    </div>
+    
+    <button class="arrow-button" type="button" id="submitButton">
+        &#8594; <!-- 화살표 아이콘 -->
+    </button>
+</div>
+
+<div class="my-app-button-container">
+    <span class="my-app-text">Draw My Life</span>
+</div>
+
+	<script>
+	$(document).ready(function() {
+	    let userIdTimer, userPwTimer, userNameTimer, userTelTimer, userEmailTimer;
+
+	    // 메시지 객체
+	    const messages = {
+	        userId: {
+	            required: 'IDは必須入力値です。',
+	            format: 'IDは4～12文字、英語と数字のみ入力可能です。'
+	        },
+	        userPw: {
+	            required: 'パスワードは必須入力値です。',
+	            format: 'パスワードは最低8文字以上で、大文字、小文字、数字、特殊文字を含む必要があります。'
+	        },
+	        userName: {
+	            required: '名前は必須入力値です。',
+	            format: '名前は2～30文字、ハングルまたは英語のみ入力可能です。'
+	        },
+	        userTel: {
+	            required: '電話番号は必須入力値です。',
+	            format: '電話番号の形式が正しくありません。(例：010-1234-5678)'
+	        },
+	        userEmail: {
+	            required: 'メールアドレスは必須入力項目です。',
+	            format: '無効なメール形式です。'
+	        }
+	        
+	    };
+
+	    // 유효성 검사 함수
+	    function validateField(field, errorMessage, regex) {
+	        if (field.length === 0) {
+	            return { valid: false, message: errorMessage.required };
+	        }
+	        if (regex && !regex.test(field)) {
+	            return { valid: false, message: errorMessage.format };
+	        }
+	        return { valid: true, message: '' };
+	    }
+
+	    // 아이디 입력 유효성 검사
+	    $('#userId').on('input', function() {
+	        clearTimeout(userIdTimer);
+	        const userId = $(this).val().trim();
+	        $('#userIdError').text('');
+
+	        const validation = validateField(userId, messages.userId, /^[a-zA-Z0-9]{4,12}$/);
+
+	        if (!validation.valid) {
+	            $('#userIdError').text(validation.message).css('color', 'red');
+	            return;
+	        }
+
+	        // 입력 후 300ms 대기
+	        userIdTimer = setTimeout(function() {
+	            $.ajax({
+	                type: 'post',
+	                url: '/mem/checkId.do',
+	                data: { id: userId },
+	                success: function(result) {
+	                    if (result == -1) {
+	                        $('#userIdError').text('サーバーエラーが発生しました。').css('color', 'red');
+	                    } else if (result == 1) {
+	                        $('#userIdError').text('すでに使用中のIDです。').css('color', 'red');
+	                    } else {
+	                        $('#userIdError').text('使用可能なIDです。').css('color', 'orange');
+	                    }
+	                }
+	            });
+	        }, 300);
+	    });
+
+	    // 비밀번호 입력 유효성 검사
+	    $('#userPw').on('input', function() {
+	        clearTimeout(userPwTimer);
+	        const userPw = $(this).val();
+	        $('#userPwError').text('');
+
+	        const validation = validateField(userPw, messages.userPw, /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*_]).{8,}$/);
+
+	        if (!validation.valid) {
+	            $('#userPwError').text(validation.message).css('color', 'red');
+	            return;
+	        }
+
+	        // 입력 후 300ms 대기
+	        userPwTimer = setTimeout(function() {
+	            $.ajax({
+	                type: 'post',
+	                url: '/mem/checkPw.do',
+	                data: { password: userPw },
+	                success: function(result) {
+	                    if (result == -1) {
+	                        $('#userPwError').text('サーバーエラーが発生しました。').css('color', 'red');
+	                    } else if (result == 1) {
+	                        $('#userPwError').text('すでに使用中のパスワードです。').css('color', 'red');
+	                    } else {
+	                        $('#userPwError').text('使用可能なパスワードです。').css('color', 'orange');
+	                    }
+	                }
+	            });
+	        }, 300);
+	    });
+
+	    // 이름 입력 유효성 검사
+	    $('#userName').on('input', function() {
+	        clearTimeout(userNameTimer);
+	        const userName = $(this).val().trim();
+	        $('#userNameError').text('');
+
+	        const validation = validateField(userName, messages.userName, /^[a-zA-Z가-힣\s'-]{2,30}$/);
+
+	        if (!validation.valid) {
+	            $('#userNameError').text(validation.message).css('color', 'red');
+	            return;
+	        }
+
+	        $('#userNameError').text('使用可能な名前です。').css('color', 'orange');
+	    });
+
+	    // 전화번호 입력 유효성 검사
+	    $('#userTel').on('input', function() {
+	        clearTimeout(userTelTimer);
+	        const userTel = $(this).val().trim();
+	        $('#userTelError').text('');
+
+	        const validation = validateField(userTel, messages.userTel, /^\d{3}-\d{3,4}-\d{4}$/);
+
+	        if (!validation.valid) {
+	            $('#userTelError').text(validation.message).css('color', 'red');
+	            return;
+	        }
+
+	        $('#userTelError').text('利用可能な電話番号です。').css('color', 'orange');
+	    });
+
+	    // 이메일 입력 유효성 검사
+	    $('#userEmail').on('input', function() {
+	        clearTimeout(userEmailTimer);
+	        const userEmail = $(this).val().trim();
+	        $('#userEmailError').text('');
+
+	        const validation = validateField(userEmail, messages.userEmail, /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+
+	        if (!validation.valid) {
+	            $('#userEmailError').text(validation.message).css('color', 'red');
+	            return;
+	        }
+
+	        $('#userEmailError').text('사용 가능한 이메일입니다').css('color', 'orange');
+	    });
+
+	    // 버튼 클릭 시 회원가입 처리
+	    $('#submitButton').on('click', function() {
+	        // 유효성 검사
+	        const userIdValid = $('#userIdError').text() === '使用可能なIDです。';
+	        const userPwValid = $('#userPwError').text() === '使用可能なパスワードです。';
+	        const userNameValid = $('#userNameError').text() === '使用可能な名前です。';
+	        const userTelValid = $('#userTelError').text() === '利用可能な電話番号です。';
+	        const userEmailValid = $('#userEmailError').text() === '利用可能なメールです。';
+	      
+
+	        if (userIdValid && userPwValid && userNameValid && userTelValid && userEmailValid) {
+	            const userId = $('#userId').val().trim();
+	            const userPw = $('#userPw').val().trim();
+	            const userName = $('#userName').val().trim();
+	            const userTel = $('#userTel').val().trim();
+	            const userEmail = $('#userEmail').val().trim();
+	          
+
+	            // AJAX 요청
+	            $.ajax({
+	                type: 'post',
+	                url: '/mem/register.do',
+	                data: {
+	                    id: userId,
+	                    password: userPw,
+	                    name: userName,
+	                    phone: userTel,
+	                    email: userEmail
+	                },
+	                success: function(response) {
+	                    if (response.result === 1) {
+	                        alert('会員登録が正常に完了しました。');
+	                        setTimeout(function() {
+	                            window.location.href = '../login/login.do'; // 로그인 페이지로 이동
+	                        }, 2000);
+	                    } else if (response.result === -1) {
+	                        alert('サーバーエラーが発生しました。');
+	                    } else {
+	                        alert('会員登録に失敗しました。'); // result가 1이 아닐 경우 실패 메시지
+	                    }
+	                },
+	                error: function(xhr, status, error) {
+	                    console.error("AJAX リクエスト失敗:", status, error);
+	                    alert('サーバーとの通信に失敗しました。');
+	                }
+	            });
+	        } else {
+	            alert('すべてのフィールドを正しく入力してください。');
+	        }
+	    });
+	});
+
+	            </script>
+</body>
+</html>
